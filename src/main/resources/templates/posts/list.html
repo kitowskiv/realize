@@ -28,7 +28,9 @@
                 <tbody>
                     <tr th:each="post : ${posts}">
                         <td th:text="${{post.startDate}}"></td>
-                        <td><a th:href="@{${'/posts/detail/'+post.uid}}" th:text="${post.title}"></a></td>
+                        <td><a th:href="@{${'/posts/detail/'+post.uid}}" th:text="${post.title}" ></a></td>
+                        <td><a th:href="@{${'/posts/detail/'+post.uid}}" th:text="${post.status}" ></a></td>
+
                     </tr>
                 </tbody>
             </table>

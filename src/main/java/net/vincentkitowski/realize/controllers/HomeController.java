@@ -17,9 +17,11 @@ public class HomeController {
     PostRepository postRepository;
 
     @GetMapping(value = "/")
+
     public String index(Model model) {
         List<Post> allPosts = postRepository.findAll();
         model.addAttribute("posts", allPosts);
         return "posts/list";
+
     }
 }

@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootswatch-lux/4.0.0/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/jquery-ui.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/realize.css}"/>
 
 
 <style>
@@ -148,7 +152,8 @@ img {vertical-align: middle;}
 
 </div>
 <div class="col-md-12 text-center">
-    <button type="button" class="btn btn-success">Get Started!</button>
+    <a th:href="@{/login}"><button type="button"   class="btn btn-success" >Get Started!</button></a>
+
 </div>
 <script>
 var slideIndex = 1;

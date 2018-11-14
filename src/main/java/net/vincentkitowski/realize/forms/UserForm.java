@@ -15,6 +15,12 @@ public class UserForm {
     @Pattern(regexp = "(\\S){2,}.*", message = "Full name must contain at least two characters")
     private String fullName;
 
+
+    @NotNull(message = "Phone number must be 11 digits")
+    private String phone;
+
+
+
     @NotNull
     @Pattern(regexp = "(\\S){6,20}", message = "Password must have 6-20 non-whitespace characters")
     private String password;
@@ -39,6 +45,10 @@ public class UserForm {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone; }
 
     public String getPassword() {
         return password;

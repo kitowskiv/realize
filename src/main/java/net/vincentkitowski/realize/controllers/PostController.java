@@ -36,10 +36,12 @@ public class PostController extends AbstractBaseController {
 
     @GetMapping(value = "create")
     public String displayCreateEventForm(Model model, HttpServletRequest request) {
+
         model.addAttribute(new Post());
         model.addAttribute("actionUrl", request.getRequestURI());
         model.addAttribute("title", "Create Post");
         model.addAttribute("volunteers", volunteerRepository.findAll());
+
         return "posts/create-or-update";
     }
 
@@ -123,6 +125,7 @@ public class PostController extends AbstractBaseController {
 
     @PostMapping(value = "focus/{uid}")
     public String processFocusIntentForm(@PathVariable int uid, RedirectAttributes model) {
+
 
             return "redirect:/posts";
     }

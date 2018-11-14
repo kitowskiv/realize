@@ -32,6 +32,9 @@ public class Post extends AbstractEntity {
 
     private String location;
 
+
+    private String status;
+
     @ManyToMany
     private final List<Volunteer> volunteers = new ArrayList<>();
 
@@ -40,7 +43,7 @@ public class Post extends AbstractEntity {
     public Post(@NotBlank String title,
                 @NotNull String description,
                 @NotNull Date startDate,
-                String location) {
+                String location, String status) {
 
         if (title == null || title.length() == 0)
             throw new IllegalArgumentException("Title may not be blank");
@@ -55,10 +58,11 @@ public class Post extends AbstractEntity {
         this.description = description;
         this.startDate = startDate;
         this.location = location;
+        this.location = status;
     }
 
-    public Post(String title, String description, Date startDate, String location, List<Volunteer> volunteers) {
-        this(title, description, startDate, location);
+    public Post(String title, String description, Date startDate, String location, String status, List<Volunteer> volunteers) {
+        this(title, description, startDate, location, status);
         this.addAllVolunteers(volunteers);
     }
 
@@ -97,6 +101,12 @@ public class Post extends AbstractEntity {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
+
+
 
     @Override
     public String toString() {

@@ -30,6 +30,7 @@ public class AuthenticationController extends AbstractBaseController {
             return "register";
 
         try {
+            System.out.println(userForm);
             userService.save(userForm);
         } catch (EmailExistsException e) {
             errors.rejectValue("email", "email.alreadyexists", e.getMessage());

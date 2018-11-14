@@ -31,6 +31,7 @@ dependencies {
 	compile('org.webjars:jquery-ui:1.12.1')
 	compile("org.webjars:bootstrap:${bootstrapVersion}")
 	compile group: 'org.webjars', name: 'bootswatch-lux', version: '4.0.0'
+	compile group: "com.twilio.sdk", name: "twilio", version: "7.23.1"
 	compile('org.webjars:font-awesome:5.0.10')
 	compile('org.webjars:webjars-locator:0.33')
 	compile('org.springframework.boot:spring-boot-starter-security')

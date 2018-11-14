@@ -21,12 +21,15 @@ public class User extends AbstractEntity {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String phone;
+
     @NotNull
     private Boolean enabled = true;
 
     public User() {}
 
-    public User(@NotBlank String email, @NotBlank String fullName, @NotBlank String password) {
+    public User(@NotBlank String email, @NotBlank String fullName, @NotBlank String phone, @NotBlank String password) {
 
         if (email == null || email.length() == 0 || !isValidEmail(email))
             throw new IllegalArgumentException("Email may not be blank");
@@ -37,9 +40,13 @@ public class User extends AbstractEntity {
         if (password == null || password.length() == 0)
             throw new IllegalArgumentException("Password may not be blank");
 
+
+
+
         this.email = email;
         this.fullName = fullName;
         this.password = password;
+        this.phone = phone;
     }
 
     public List<String> getRoles() {
@@ -75,6 +82,10 @@ public class User extends AbstractEntity {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone; }
 
     @Override
     public boolean equals(final Object obj) {

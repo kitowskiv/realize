@@ -6,15 +6,16 @@
 
     <title th:text="${title}"></title>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootswatch-lux/4.0.0/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/jquery-ui.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootswatch-lux/4.0.0/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/realize.css}"/>
+
 </head>
 <body>
 
 <header th:fragment="header">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/}">Realize</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,6 +57,9 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/popper.js}" src="js/popper.js"></script>
+    <script type="text/javascript" th:src="@{js/popper.min.js}" src="js/popper.min.js"></script>
+
 </div>
 
 </body>

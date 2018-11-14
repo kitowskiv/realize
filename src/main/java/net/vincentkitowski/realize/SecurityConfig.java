@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-
+///What pages are can and cannot be accessed pre login
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -44,7 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .regexMatchers("/webjars/.*").permitAll()
             .regexMatchers("/css/.*").permitAll()
             .regexMatchers("/login?[^/]*").permitAll()
-            .anyRequest().authenticated()
+                .regexMatchers("/landing").permitAll()
+
+                .anyRequest().authenticated()
             .and()
                 .formLogin()
                 .loginPage("/login")

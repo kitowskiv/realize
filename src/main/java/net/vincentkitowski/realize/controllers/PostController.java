@@ -1,9 +1,7 @@
 package net.vincentkitowski.realize.controllers;
 
 import net.vincentkitowski.realize.models.Post;
-import net.vincentkitowski.realize.models.Volunteer;
 import net.vincentkitowski.realize.repositories.PostRepository;
-import net.vincentkitowski.realize.repositories.VolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +22,6 @@ public class PostController extends AbstractBaseController {
     @Autowired
     PostRepository postRepository;
 
-    @Autowired
-    VolunteerRepository volunteerRepository;
-
     @GetMapping
     public String listEvents(Model model) {
         List<Post> allPosts = postRepository.findAll();
@@ -40,7 +35,6 @@ public class PostController extends AbstractBaseController {
         model.addAttribute(new Post());
         model.addAttribute("actionUrl", request.getRequestURI());
         model.addAttribute("title", "Create Post");
-        model.addAttribute("volunteers", volunteerRepository.findAll());
 
         return "posts/create-or-update";
     }
@@ -53,7 +47,6 @@ public class PostController extends AbstractBaseController {
         if (errors.hasErrors())
             return "posts/create-or-update";
 
-        syncVolunteerLists(volunteerUids, post.getVolunteers());
         postRepository.save(post);
 
         return "redirect:/posts/detail/" + post.getUid();
@@ -68,7 +61,6 @@ public class PostController extends AbstractBaseController {
         if (result.isPresent()) {
             Post post = result.get();
             model.addAttribute(post);
-            model.addAttribute("volunteerNames", post.getVolunteersFormatted());
         } else {
             model.addAttribute(MESSAGE_KEY, "warning|No event found with id: " + Integer.toString(uid));
         }
@@ -85,7 +77,6 @@ public class PostController extends AbstractBaseController {
         Optional<Post> event = postRepository.findById(uid);
         if (event.isPresent()) {
             model.addAttribute(event.get());
-            model.addAttribute("volunteers", volunteerRepository.findAll());
         } else {
             model.addAttribute(MESSAGE_KEY, "warning|No event found with id: " + Integer.toString(uid));
         }
@@ -102,7 +93,6 @@ public class PostController extends AbstractBaseController {
         if (errors.hasErrors())
             return "posts/create-or-update";
 
-        syncVolunteerLists(volunteerUids, post.getVolunteers());
         postRepository.save(post);
         model.addFlashAttribute(MESSAGE_KEY, "success|Updated Intention: " + post.getTitle());
 
@@ -130,14 +120,5 @@ public class PostController extends AbstractBaseController {
             return "redirect:/posts";
     }
 
-    private void syncVolunteerLists(List<Integer> volunteerUids, List<Volunteer> volunteers) {
-
-        if (volunteerUids == null)
-            return;
-
-        List<Volunteer> newVolunteerList = volunteerRepository.findAllById(volunteerUids);
-        volunteers.removeIf(v -> volunteerUids.contains(v.getUid()));
-        volunteers.addAll(newVolunteerList);
-    }
 
 }

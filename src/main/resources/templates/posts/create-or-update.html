@@ -35,10 +35,13 @@
                 </div>
                 <div class="form-group">
                     <label th:for="status">Status</label>
-                    <input th:errorclass="is-invalid" class="form-control" th:field="*{status}" />
+                    <select th:errorclass="is-invalid" class="form-control" th:field="*{status}" default="${post.status}">
+                        <option value="Unrealized">Unrealized</option>
+                        <option value="Partially Realized">Partially Realized</option>
+                        <option value="Realized">Realized</option>
+                    </select>
                     <div class="invalid-feedback" th:errors="*{status}"></div>
                 </div>
-
 
 
                 <input type="submit" value="Save" class="btn btn-primary" />

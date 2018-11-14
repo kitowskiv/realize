@@ -3,14 +3,10 @@ package net.vincentkitowski.realize.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Entity
@@ -35,8 +31,6 @@ public class Post extends AbstractEntity {
 
     private String status;
 
-    @ManyToMany
-    private final List<Volunteer> volunteers = new ArrayList<>();
 
     public Post() {}
 
@@ -61,10 +55,6 @@ public class Post extends AbstractEntity {
         this.location = status;
     }
 
-    public Post(String title, String description, Date startDate, String location, String status, List<Volunteer> volunteers) {
-        this(title, description, startDate, location, status);
-        this.addAllVolunteers(volunteers);
-    }
 
     public String getTitle() {
         return title;
@@ -116,20 +106,4 @@ public class Post extends AbstractEntity {
                 '}';
     }
 
-    public List<Volunteer> getVolunteers() {
-        return this.volunteers;
-    }
-
-    public void addVolunteer(Volunteer vol) {
-        this.volunteers.add(vol);
-    }
-
-    public void addAllVolunteers(List<Volunteer> vols) {
-        this.volunteers.addAll(vols);
-    }
-
-    public String getVolunteersFormatted() {
-        List<String> nameList = this.getVolunteers().stream().map(Volunteer::getFullName).collect(Collectors.toList());
-        return String.join(", ", nameList);
-    }
 }
